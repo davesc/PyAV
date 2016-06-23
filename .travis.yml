@@ -10,6 +10,8 @@ addons:
             - zlib1g-dev
             - yasm
             - ffmpeg # We will install our own, but we need the dependencies
+            - gdb # For segfaults.
+            - apport # For enabling coredumps.
 
 cache:
     directories:
@@ -75,5 +77,13 @@ before_install:
 install:
     - scripts/build
 
+before_script:
+    - ulimit -c unlimited -S # enable core dumps
+
 script:
     - scripts/test
+
+after_failure:
+    # Print a backtrace for the segfault.
+    - if [[ -f "core" ]]; then gdb -c core nosetests -ex "thread apply all bt" -ex "set pagination 0" -batch; fi
+
