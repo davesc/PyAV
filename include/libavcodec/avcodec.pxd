@@ -100,6 +100,7 @@ cdef extern from "libavcodec/avcodec.pyav.h" nogil:
         
         int bit_rate
         int bit_rate_tolerance
+        int gop_size
         int mb_decision
         
         int global_quality
