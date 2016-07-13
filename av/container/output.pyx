@@ -77,6 +77,7 @@ cdef class OutputContainer(Container):
             codec_context.height = template._codec_context.height
             codec_context.bit_rate = template._codec_context.bit_rate
             codec_context.bit_rate_tolerance = template._codec_context.bit_rate_tolerance
+            codec_context.gop_size = template._codec_context.gop_size
             codec_context.ticks_per_frame = template._codec_context.ticks_per_frame
             # From <https://stackoverflow.com/questions/17592120>
             stream.sample_aspect_ratio.num = template._stream.sample_aspect_ratio.num
